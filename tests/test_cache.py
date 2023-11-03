@@ -1,9 +1,15 @@
+from typing import Any
 from  backend.cache.lru_cache import LRUCache
+import unittest
 
-cache = LRUCache(100)
-cache.set('Jesse', 'Pinkman')
-cache.set('Walter', 'White')
-cache.set('Jesse', 'James')
-print(cache.get('Jesse')) # вернёт 'James'
-cache.rem('Walter')
-print(cache.get('Walter')) #
+class Test_LRUCache(unittest.TestCase):
+    def setUp(self) -> None:
+        self.cache = LRUCache(100)
+        self.cache.set('Jesse', 'Pinkman')
+        self.cache.set('Walter', 'White')
+        self.cache.set('Jesse', 'James')
+
+    def test_getter1(self):
+        self.assertEqual(self.cache.get('Jesse'), 'James')
+        self.cache.rem('Walter')
+        self.assertEqual(self.cache.get('Walter'), '')
