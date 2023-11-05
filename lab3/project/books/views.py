@@ -21,7 +21,7 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Book
-    template_name = "polls/detail.html"
+    template_name = "books/detail.html"
 
 
 def vote(request, book_id):
@@ -29,8 +29,9 @@ def vote(request, book_id):
     if request.POST.get("Add_fav")== "Add to favorites":
         book.favorite = True
         book.save()
-        return HttpResponseRedirect(reverse("books:details", args=(book.id,)))
+        return HttpResponseRedirect(reverse("books:detail", args=(book.id,)))
     
     elif request.POST.get("return")== "back":
-        return HttpResponseRedirect(reverse("books:results", args=(book.id,)))
+        # return HttpResponseRedirect(reverse("", args=(book.id,)))
+        return HttpResponseRedirect("/books")
 
