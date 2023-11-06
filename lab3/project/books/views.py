@@ -26,6 +26,15 @@ class AuthorListView(generic.ListView):
         """Return the last five published questions."""
         return Author.objects.order_by("-date_of_birth")
     
+
+class GenresListView(generic.ListView):
+    template_name = "books/genre_list.html"
+    context_object_name = "genre_list"
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Genre.objects.all()
+
  
 class FavoriteBooksView(LoginRequiredMixin, generic.ListView):
     template_name = "books/index.html"
@@ -52,6 +61,11 @@ class BookDetailView(generic.DetailView):
 class AuthorDetailView(generic.DetailView):
     model = Author
     template_name = "books/author_detail.html"
+
+
+class GenreDetailView(generic.DetailView):
+    model = Genre
+    template_name = "books/genre_detail.html"
 
 
 @login_required

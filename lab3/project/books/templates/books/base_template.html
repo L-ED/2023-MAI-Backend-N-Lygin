@@ -21,26 +21,34 @@
   {% block sidebar %}
   
  
-  <ul class="sidebar-nav">
-   {% if user.is_authenticated %}
-     <li>User: {{ user.get_username }}</li>
-     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
-   {% else %}
-     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
-   {% endif %} 
-  </ul>
+    <ul class="sidebar-nav">
+      <li>User: {{ user.get_username }}</li>
+      <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+    </ul>
   
-   {% if user.is_staff %}
-   <hr>
-   <ul class="sidebar-nav">
-   <li>Staff</li>
-   {% if perms.catalog.can_mark_returned %}
-   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
-   {% endif %}
-   </ul>
+    {% if user.is_staff %}
+    <hr>
+      <ul class="sidebar-nav">
+        <li>Staff</li>
+      </ul>
+    </hr>
     {% endif %}
- 
-{% endblock %}
+
+    <hr>
+      <ul class="sidebar-nav">
+        <li><a href="/books/">Books</a></li>
+        <li><a href="/books/genres/">Genres</a></li>
+        <li><a href="/books/authors/">Authors</a></li>
+      </ul>
+    </hr>
+
+    <hr>
+      <ul class="sidebar-nav">
+        <li><a href="/books/favorites/">Favorite</a></li>
+      </ul>
+    </hr>
+
+  {% endblock %}
   </div>
   <div class="col-sm-10 ">
   {% block content %}{% endblock %}

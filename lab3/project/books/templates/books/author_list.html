@@ -1,10 +1,16 @@
-{% if author_list %}
-    <head>Authors</head>
-    <ul>
-        {% for author in author_list %}
-            <li><a href="/books/authors/{{author.id}}">{{ author.first_name }} {{ author.last_name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No books are available.</p>
-{% endif %}
+{% extends 'books/base_template.html' %}
+
+{% block content %}
+
+    {% if author_list %}
+        <head>Authors</head>
+        <ul>
+            {% for author in author_list %}
+                <li><a href="/books/authors/{{author.id}}">{{ author.first_name }} {{ author.last_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+
+{% endblock %}

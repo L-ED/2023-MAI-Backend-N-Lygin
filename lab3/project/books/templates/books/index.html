@@ -1,8 +1,14 @@
-{% if books_list %}
-    {% csrf_token %}
-    {% for book in books_list %}
-        <li><a href="/books/{{ book.id }}/">{{ book.title }}</a></li>
-    {% endfor %}
-{% else %}
-    <p>No books are available.</p>
-{% endif %}
+{% extends 'books/base_template.html' %}
+
+{% block content %}
+
+    {% if books_list %}
+        {% csrf_token %}
+        {% for book in books_list %}
+            <li><a href="/books/{{ book.id }}/">{{ book.title }}</a></li>
+        {% endfor %}
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+
+{% endblock %}

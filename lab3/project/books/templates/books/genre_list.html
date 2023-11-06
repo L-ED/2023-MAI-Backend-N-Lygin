@@ -1,0 +1,16 @@
+{% extends 'books/base_template.html' %}
+
+{% block content %}
+
+    {% if genre_list %}
+        <head>Genres</head>
+        <ul>
+            {% for genre in genre_list %}
+                <li><a href="/books/genres/{{genre.id}}">{{ genre.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+
+{% endblock %}
