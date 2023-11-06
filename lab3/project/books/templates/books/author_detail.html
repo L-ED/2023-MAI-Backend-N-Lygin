@@ -1,0 +1,12 @@
+<legend><h2>{{ author.first_name }} {{ author.last_name }}</h2></legend>
+<p>Date of birth: {{ author.date_of_birth }} </p>
+<h3>Books</h3>
+<nav>
+    <ul>
+        {% for book in author.book_set.all %}
+        <dt><a href="{% url 'books:vote' book.pk %}">{{book.title}}</a></dt>
+        {% endfor %}
+    </ul>
+</nav>
+<dl>
+</dl>
