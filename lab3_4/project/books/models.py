@@ -38,10 +38,10 @@ class Book(models.Model):
     
 
     def get_genre(self):
-        return ", ".join(genre_.username for genre_ in self.genre.all())
+        return ", ".join(genre_.name for genre_ in self.genre.all())
 
 
     def get_favorite(self):
-        return ", ".join(fav.name for fav in self.favorite_of.all())
+        return ", ".join(fav.first_name for fav in self.favorite_of.all())
 
 # class User(models.Mode)

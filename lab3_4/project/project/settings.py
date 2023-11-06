@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^4t5r*zkgd(hgc2&x2k@wzu1g6l$n$o)7cjxdt+5sf)x_$s#&(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'booksdatabase',
+        'USER': 'booksuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': ''
     }
 }
 
