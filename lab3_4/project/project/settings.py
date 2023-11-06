@@ -129,3 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/books'
 LOGIN_URL = "/accounts/login/"
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost']

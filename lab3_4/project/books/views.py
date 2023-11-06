@@ -8,6 +8,8 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.views.decorators.csrf import csrf_protect
+
 # Create your views here.
 class BookListView(generic.ListView):
     template_name = "books/index.html"
@@ -67,7 +69,7 @@ class GenreDetailView(generic.DetailView):
     model = Genre
     template_name = "books/genre_detail.html"
 
-
+@csrf_protect
 @login_required
 def vote(request, book_id):
     if request.method == 'POST':
