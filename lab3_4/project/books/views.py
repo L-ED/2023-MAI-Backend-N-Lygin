@@ -7,7 +7,7 @@ from .models import Book, Genre, Author
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
@@ -83,3 +83,23 @@ def vote(request, book_id):
             # return HttpResponseRedirect(reverse("", args=(book.id,)))
             return HttpResponseRedirect("/books")
 
+# https://django.cowhite.com/blog/working-with-url-get-post-parameters-in-django/
+def search(request):
+
+    if request.method == "GET":
+        quiery_string = request.GET['q']
+        print(quiery_string)
+        books = Book.objects.filter(
+            Q(title__icontains=quiery_string) |
+            Q(author__first_name__icontains=quiery_string) #|
+            # Q(genre__icontains=quiery_string)
+        ).order_by('-publish_date')
+
+        context = {'books': books}
+
+        return render(request, 'books/search.html', context)
+
+
+        # authors = Author.objects.filter(
+
+        # )
